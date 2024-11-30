@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM AutoClean - Dashboard</title>
+
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            position: relative;
+        }
+
+        nav {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .tabela-servicos {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .tabela-servicos th, .tabela-servicos td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .tabela-servicos th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .tabela-servicos td a {
+            color: #000000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .tabela-servicos td a:hover {
+            color: #444;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .actions button {
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .actions button:hover {
+            background-color: #444;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        GM AutoClean - Dashboard
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="agenda.html">Agenda</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Faturamento</h2>
+
+        <div class="actions">
+            <button onclick="adicionarServico()">Adicionar Serviço</button>
+            <div>
+                <button onclick="filtrarServicos('agendado')">Agendados</button>
+                <button onclick="filtrarServicos('em_andamento')">Em Andamento</button>
+                <button onclick="filtrarServicos('concluido')">Concluídos</button>
+            </div>
+            <button id="btnVerTodos" onclick="exibirServicos()">Ver Todos</button>
+        </div>
+
+        <table class="tabela-servicos" id="tabela-servicos">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Serviço</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dados dos serviços serão inseridos aqui via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        GM AutoClean © 2024 - Todos os direitos reservados.
+    </footer>
+
+    <script>
+        // Mock de dados de serviços
+        const servicos = [
+            { id: 1, cliente: 'João da Silva', servico: 'Lavagem Completa', status: 'agendado' },
+            { id: 2, cliente: 'Maria Souza', servico: 'Polimento', status: 'em_andamento' },
+            { id: 3, cliente: 'Carlos Lima', servico: 'Higienização Interna', status: 'concluido' },
+        ];
+
+        // Variável para armazenar o status do filtro atual
+        let filtroAtual = '';
+
+        // Função para exibir os serviços na tabela
+        function exibirServicos(filtro = '') {
+            filtroAtual = filtro; // Armazenar o filtro atual
+
+            const tabelaServicos = document.getElementById('tabela-servicos').getElementsByTagName('tbody')[0];
+            tabelaServicos.innerHTML = '';
+
+            const servicosFiltrados = filtro ? servicos.filter(s => s.status === filtro) : servicos;
+
+            servicosFiltrados.forEach(servico => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${servico.cliente}</td>
+                    <td>${servico.servico}</td>
+                    <td>${servico.status}</td>
+                    <td>
+                        <a href="#" onclick="editarServico(${servico.id})">Editar</a> | 
+                        <a href="#" onclick="cancelarServico(${servico.id})">Cancelar</a>
+                    </td>
+                `;
+                tabelaServicos.appendChild(tr);
+            });
+
+            // Mostrar ou esconder o botão "Ver Todos"
+            document.getElementById('btnVerTodos').style.display = filtro ? 'block' : 'none';
+        }
+
+        // Função para filtrar os serviços
+        function filtrarServicos(status) {
+            exibirServicos(status);
+        }
+
+        // Função para adicionar um novo serviço
+        function adicionarServico() {
+            alert('Aqui você vai adicionar um novo serviço!');
+        }
+
+        // Função para editar o serviço (exemplo)
+        function editarServico(id) {
+            alert('Editar serviço: ' + id);
+        }
+
+        // Função para cancelar o serviço (exemplo)
+        function cancelarServico(id) {
+            alert('Cancelar serviço: ' + id);
+        }
+
+        // Exibir todos os serviços inicialmente
+        exibirServicos();
+    </script>
+
+</body>
+</html>

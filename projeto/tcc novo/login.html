@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM AutoClean - Login</title>
+
+    <!-- CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            z-index: 5;
+            backdrop-filter: blur(5px);
+            color: #fff;
+        }
+
+        .login-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ddd;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #000000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 0;
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+        }
+
+        .info-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #ddd;
+        }
+
+        .info-text p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+            color: #ddd;
+        }
+
+        .feature-item i {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .feature-item p {
+            font-size: 1.2em;
+        }
+
+        /* Adicionando fundo com imagem */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.example.com/car-image.jpg') no-repeat center center/cover;
+            z-index: -1;
+            opacity: 0.3; /* Opacidade para não sobrecarregar o conteúdo */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        GM AutoClean - Login
+    </div>
+
+    <div class="login-container">
+        <h1>Bem-vindo de volta!</h1>
+        <p>Entre na sua conta para acessar todos os serviços exclusivos do GM AutoClean.</p>
+
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+            </div>
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+
+        <div class="register-link">
+            <p>Não tem uma conta? <a href="registro.html">Registre-se aqui</a></p>
+        </div>
+
+        <div class="info-text">
+            <p>Entre no seu painel para acessar todos os serviços do GM AutoClean. Caso ainda não tenha uma conta, registre-se agora mesmo e aproveite toda a comodidade!</p>
+        </div>
+
+        <!-- Seção de funcionalidades do serviço -->
+        <div class="features">
+            <div class="feature-item">
+                <i class="fa fa-car"></i>
+                <p>Lavagem de veículos</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa fa-cogs"></i>
+                <p>Manutenção automotiva</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa fa-wrench"></i>
+                <p>Personalização do carro</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>GM AutoClean © 2024 - Todos os direitos reservados.</p>
+    </div>
+
+</body>
+</html>
