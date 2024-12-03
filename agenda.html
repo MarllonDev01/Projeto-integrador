@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM AutoClean - Agenda</title>
+
+    <!-- CSS -->
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            position: relative;
+        }
+
+        nav {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #000000;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .form-container {
+            margin-top: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input[type="date"], input[type="datetime-local"], button {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #000000;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #000000;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        GM AutoClean - Agenda
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="servicos.html">Serviços</a>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <h2>Serviços Agendados</h2>
+
+        <!-- Tabela de Agenda -->
+        <table id="agenda-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Cliente</th>
+                    <th>Serviço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>04/11/2024</td>
+                    <td>08:00</td>
+                    <td>João Silva</td>
+                    <td>Lavagem Completa</td>
+                </tr>
+                <tr>
+                    <td>04/11/2024</td>
+                    <td>10:00</td>
+                    <td>Maria Oliveira</td>
+                    <td>Polimento</td>
+                </tr>
+                <tr>
+                    <td>05/11/2024</td>
+                    <td>09:00</td>
+                    <td>Lucas Pereira</td>
+                    <td>Enceramento</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Formulário de Agendamento -->
+        <div class="form-container">
+            <h2>Agendar Novo Serviço</h2>
+            <form id="agendamento-form">
+                <label for="cliente">Selecione o Cliente:</label>
+                <select id="cliente" name="cliente">
+                    <option value="joao">João Silva</option>
+                    <option value="maria">Maria Oliveira</option>
+                    <option value="lucas">Lucas Pereira</option>
+                </select>
+
+                <label for="servico">Selecione o Serviço:</label>
+                <select id="servico" name="servico">
+                    <option value="lavagem">Lavagem Completa</option>
+                    <option value="polimento">Polimento</option>
+                    <option value="enceramento">Enceramento</option>
+                </select>
+
+                <label for="data-hora">Selecione a Data e Horário:</label>
+                <input type="datetime-local" id="data-hora" name="data-hora">
+
+                <button type="submit">Agendar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        GM AutoClean © 2024 - Todos os direitos reservados.
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mapeamento de nome completo dos clientes
+        const clientesMap = {
+            joao: "João Silva",
+            maria: "Maria Oliveira",
+            lucas: "Lucas Pereira"
+        };
+
+        // Mapeamento de serviços
+        const servicosMap = {
+            lavagem: "Lavagem Completa",
+            polimento: "Polimento",
+            enceramento: "Enceramento"
+        };
+
+        // Função para adicionar agendamento à tabela
+        document.getElementById('agendamento-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Captura os dados do formulário
+            const cliente = document.getElementById('cliente').value;
+            const servico = document.getElementById('servico').value;
+            const dataHora = document.getElementById('data-hora').value;
+            const data = new Date(dataHora);
+            const formattedDate = data.toLocaleDateString('pt-BR');
+            const formattedTime = data.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            // Verifica se o horário já está ocupado
+            const rows = document.querySelectorAll('#agenda-table tbody tr');
+            let isOccupied = false;
+
+            rows.forEach(row => {
+                const rowData = row.cells[0].textContent;
+                const rowTime = row.cells[1].textContent;
+
+                if (rowData === formattedDate && rowTime === formattedTime) {
+                    isOccupied = true;
+                }
+            });
+
+            if (isOccupied) {
+                alert('Este horário já está ocupado.');
+            } else {
+                // Adiciona o novo agendamento à tabela com os nomes completos e a capitalização
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${formattedTime}</td>
+                    <td>${clientesMap[cliente]}</td>
+                    <td>${servicosMap[servico]}</td>
+                `;
+                document.querySelector('#agenda-table tbody').appendChild(newRow);
+                alert('Agendamento realizado com sucesso!');
+            }
+        });
+    </script>
+</body>
+</html>

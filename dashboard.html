@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM AutoClean - Dashboard</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            position: relative;
+        }
+
+        nav {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .info strong {
+            color: #333;
+        }
+
+        .info .value {
+            font-size: 1.5em;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .tabela-dashboard {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .tabela-dashboard th, .tabela-dashboard td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .tabela-dashboard th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        GM AutoClean - Dashboard
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="agenda.html">Agenda</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Faturamento</h2>
+
+        <div class="info">
+            <span>Total do Dia:</span>
+            <span class="value">R$ 350,00</span>
+        </div>
+
+        <div class="info">
+            <span>Total da Semana:</span>
+            <span class="value">R$ 2.450,00</span>
+        </div>
+
+        <div class="info">
+            <span>Total do Mês:</span>
+            <span class="value">R$ 9.800,00</span>
+        </div>
+
+        <h2>Estatísticas de Lavagem</h2>
+
+        <table class="tabela-dashboard">
+            <thead>
+                <tr>
+                    <th>Métrica</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lavagens Concluídas</td>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <td>Lavagens em Andamento</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Lavagens em Aguardo</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>Serviços Agendados</td>
+                    <td>5</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        GM AutoClean © 2024 - Todos os direitos reservados.
+    </footer>
+</body>
+</html>

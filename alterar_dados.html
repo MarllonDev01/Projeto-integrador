@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM AutoClean - Cadastro</title>
+
+    <!-- CSS -->
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .alterar-senha {
+            position: absolute;
+            right: 20px;
+            background-color: #000000;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.7em;
+            transition: background-color 0.3s ease;
+        }
+
+        .alterar-senha:hover {
+            background-color: #444;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .ficha-cadastral {
+            margin-bottom: 20px;
+        }
+
+        .ficha-cadastral h3 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .ficha-cadastral p {
+            font-size: 1em;
+            color: #555;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ficha-cadastral p span {
+            flex: 1;
+            padding-right: 10px; /* Espaço para o botão editar */
+        }
+
+        .ficha-cadastral a {
+            color: #fff;
+            background-color: #000000;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .ficha-cadastral a:hover {
+            background-color: #444;
+        }
+
+        .alterar-dados {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Formulário de alteração de senha */
+        #senha-form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #senha-form input {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #senha-form button {
+            width: 100%;
+            padding: 8px;
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #senha-form button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        GM AutoClean - Cadastro
+        <a href="#" class="alterar-senha" onclick="mostrarSenhaForm()">Alterar Senha</a>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <h2>Alterar Informações</h2>
+
+        <!-- Simulação de Ficha Cadastral -->
+        <div class="ficha-cadastral">
+            <h3>Ficha Cadastral</h3>
+            <p><strong>E-mail:</strong> <span>cliente@exemplo.com</span> <a href="#" onclick="editar('email')">Editar</a></p>
+            <p><strong>Nome:</strong> <span>João da Silva</span> <a href="#" onclick="editar('nome')">Editar</a></p>
+            <p><strong>Telefone:</strong> <span>(11) 98765-4321</span> <a href="#" onclick="editar('telefone')">Editar</a></p>
+            <p><strong>Endereço:</strong> <span>Rua Exemplo, 123 - Bairro - Cidade, SP</span> <a href="#" onclick="editar('endereco')">Editar</a></p>
+            <p><strong>Data de Nascimento:</strong> <span>01/01/1990</span> <a href="#" onclick="editar('data_nascimento')">Editar</a></p>
+        </div>
+
+        <!-- Formulário de Alteração (Visível apenas quando o cliente clica em "Editar") -->
+        <div id="form-container" style="display: none;">
+            <form action="#" method="post">
+                <div id="form-fields"></div>
+                <button type="submit">Salvar Alterações</button>
+            </form>
+        </div>
+
+        <div class="alterar-dados">
+            <button onclick="alterarTudo()">Alterar Todas as Informações</button>
+        </div>
+    </div>
+
+    <!-- Formulário de Alteração de Senha -->
+    <div id="senha-form">
+        <form action="#" method="post">
+            <label for="nova-senha">Nova Senha</label>
+            <input type="password" id="nova-senha" name="nova-senha" placeholder="Digite sua nova senha" required>
+            <label for="confirmar-senha">Confirmar Nova Senha</label>
+            <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme sua nova senha" required>
+            <button type="submit">Alterar Senha</button>
+        </form>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        GM AutoClean © 2024 - Todos os direitos reservados.
+    </footer>
+
+    <script>
+        function editar(campo) {
+            const formContainer = document.getElementById("form-container");
+            const formFields = document.getElementById("form-fields");
+            formFields.innerHTML = '';
+
+            const label = document.createElement("label");
+            label.setAttribute("for", campo);
+            label.textContent = `Novo ${campo.charAt(0).toUpperCase() + campo.slice(1)}`;
+            
+            const input = document.createElement("input");
+            input.setAttribute("type", campo === "data_nascimento" ? "date" : "text");
+            input.setAttribute("id", campo);
+            input.setAttribute("name", campo);
+            input.setAttribute("placeholder", `Digite seu novo ${campo}`);
+            input.required = true;
+
+            formFields.appendChild(label);
+            formFields.appendChild(input);
+            
+            formContainer.style.display = 'block';
+        }
+
+        function alterarTudo() {
+            const formContainer = document.getElementById("form-container");
+            const formFields = document.getElementById("form-fields");
+            formFields.innerHTML = '';
+
+            const campos = ["email", "nome", "telefone", "endereco", "data_nascimento"];
+
+            campos.forEach(campo => {
+                const label = document.createElement("label");
+                label.setAttribute("for", campo);
+                label.textContent = `Novo ${campo.charAt(0).toUpperCase() + campo.slice(1)}`;
+
+                const input = document.createElement("input");
+                input.setAttribute("type", campo === "data_nascimento" ? "date" : "text");
+                input.setAttribute("id", campo);
+                input.setAttribute("name", campo);
+                input.setAttribute("placeholder", `Digite seu novo ${campo}`);
+                input.required = true;
+
+                formFields.appendChild(label);
+                formFields.appendChild(input);
+            });
+
+            formContainer.style.display = 'block';
+        }
+
+        function mostrarSenhaForm() {
+            const senhaForm = document.getElementById("senha-form");
+            senhaForm.style.display = senhaForm.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
